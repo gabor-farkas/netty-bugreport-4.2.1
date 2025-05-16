@@ -4,6 +4,7 @@ import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
+import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.regions.providers.AwsRegionProvider;
 import software.amazon.awssdk.services.sqs.SqsAsyncClient;
 import software.amazon.awssdk.services.sqs.model.CreateQueueRequest;
@@ -28,7 +29,7 @@ public class SqsTestConfiguration {
                     AwsBasicCredentials.create(CONTAINER.getAccessKey(), CONTAINER.getSecretKey())
                 )
             )
-            .region(awsRegionProvider.getRegion())
+            .region(Region.EU_WEST_1)
             .build();
 
         createSqsQueues(sqsAsyncClient);
